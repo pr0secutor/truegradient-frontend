@@ -6,6 +6,8 @@ const SavedResponses = () => {
   const responses = useSelector((state) => state.app.responses);
   const dispatch = useDispatch();
 
+  console.log(responses);
+
   useEffect(() => {
     dispatch(setCurrentPage("SavedResponses"));
   }, []);

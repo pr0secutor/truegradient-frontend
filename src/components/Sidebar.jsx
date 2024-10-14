@@ -3,9 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
+import { BiLogOut } from "react-icons/bi";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+
+  const role = localStorage.getItem("role");
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    navigate("/login")
+  }
 
   return (
     <aside className="flex">
@@ -24,15 +33,27 @@ const Sidebar = () => {
               </svg>
             </a>
 
-            <a href="/">
-              <MdOutlineSpaceDashboard className="rounded-lg h-9 w-9 p-1.5 text-slate-500 transition-colors duration-200 hover:bg-slate-200 focus:outline-none cursor-pointer" />
-            </a>
+            {role === "admin" ? (
+              <a href="/admin">
+                <MdOutlineSpaceDashboard className="rounded-lg h-9 w-9 p-1.5 text-slate-500 transition-colors duration-200 hover:bg-slate-200 focus:outline-none cursor-pointer" />
+              </a>
+            ) : (
+              <a href="/">
+                <MdOutlineSpaceDashboard className="rounded-lg h-9 w-9 p-1.5 text-slate-500 transition-colors duration-200 hover:bg-slate-200 focus:outline-none cursor-pointer" />
+              </a>
+            )}
 
-            <a href="/saved_responses">
-              <MdOutlineMarkUnreadChatAlt className="rounded-lg h-9 w-9 p-1.5 text-slate-500 transition-colors duration-200 hover:bg-slate-200 focus:outline-none cursor-pointer" />{" "}
-            </a>
+            {role !== "admin" && (
+              <a href="/saved_responses">
+                <MdOutlineMarkUnreadChatAlt className="rounded-lg h-9 w-9 p-1.5 text-slate-500 transition-colors duration-200 hover:bg-slate-200 focus:outline-none cursor-pointer" />{" "}
+              </a>
+            )}
 
             <IoSettingsOutline className="rounded-lg h-9 w-9 p-1.5 text-slate-500 transition-colors duration-200 hover:bg-slate-200 focus:outline-none cursor-pointer" />
+            <div className="flex-grow"/>
+            <button onClick={handleLogout}>
+              <BiLogOut className="rounded-lg h-9 w-9 p-1.5 text-slate-500 transition-colors duration-200 hover:bg-slate-200 focus:outline-none cursor-pointer" />
+            </button>
           </div>
         </div>
       </nav>
