@@ -133,9 +133,12 @@ const MessageBox = ({ message }) => {
   const user_img = "https://dummyimage.com/256x256/363536/ffffff&text=U";
   const agent_img = "https://dummyimage.com/256x256/354ea1/ffffff&text=G";
 
+  const email = localStorage.getItem("email")
+
   const saveResponse = async (e) => {
     e.preventDefault();
     const data = {
+      created_by: email,
       question: message.question,
       summary: message.summary,
       result_text: message.result_text,
@@ -145,7 +148,7 @@ const MessageBox = ({ message }) => {
     };
 
     try {
-      const res = await axios.post("http://localhost:5000/save_response", data);
+      const res = await axios.post(`${BACKEND_URL}/save_response`, data);
 
       if (res.status === 200) toast.success("Response Saved");
     } catch (error) {
