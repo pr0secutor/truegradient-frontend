@@ -5,7 +5,7 @@ import { setCurrentPage } from "../appSlice";
 import { IoSaveOutline } from "react-icons/io5";
 import axios from "axios";
 import toast from "react-hot-toast";
-import BACKEND_URL from "./constants";
+import BACKEND_URL from "../constants";
 
 const Dash = () => {
   const dispatch = useDispatch();
