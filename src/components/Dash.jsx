@@ -5,6 +5,7 @@ import { setCurrentPage } from "../appSlice";
 import { IoSaveOutline } from "react-icons/io5";
 import axios from "axios";
 import toast from "react-hot-toast";
+import BACKEND_URL from "./constants";
 
 const Dash = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const Dash = () => {
     setRows(1);
 
     try {
-      const res = await axios.post("http://localhost:5000/api", data);
+      const res = await axios.post(`${BACKEND_URL}/api`, data);
       console.log(res.data.data.result_text);
       setChatLog((ChatLog) => [
         ...ChatLog,

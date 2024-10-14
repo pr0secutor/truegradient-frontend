@@ -9,11 +9,10 @@ const AdminDash = () => {
   let groupedData;
 
   if (responses.data !== undefined) {
-    const data = Object.values(responses?.data); // Convert the object to an array
+    const data = Object.values(responses?.data);
 
-    // Group data by 'created_by' field
     groupedData = data.reduce((acc, item) => {
-      const key = item.created_by; // Assumes each item has a 'created_by' field
+      const key = item.created_by;
       if (!acc[key]) {
         acc[key] = [];
       }
