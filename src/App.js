@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import AdminDash from "./components/AdminDash";
 import PrivateRoute from "./components/PrivateRoute";
 import axios from "axios";
+import BACKEND_URL from "./constants";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function App() {
   useEffect(() => {
     const fetchResponses = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/get_responses?email=${email}`, {
+        const response = await fetch(`${BACKEND_URL}/get_responses?email=${email}`, {
           email,
         });
         const data = await response.json();
